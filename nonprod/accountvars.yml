@@ -1,0 +1,7 @@
+tenant_id: "a196b33f-bb27-4684-bee1-b2ff40c77471"
+subscription_id: "82fa30a5-df4f-4f6d-9180-499dc53b772a"
+tf_remote_state_resource_group: "cloud-shell-storage-centralindia"
+tf_remote_state_storage_account: "csg10032002d2ce8087"
+tf_remote_state_container_name: "nonprod"
+tf_app_name: "test-app"
+env: "nonprod"

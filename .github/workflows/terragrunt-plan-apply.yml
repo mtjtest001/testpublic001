@@ -1,0 +1,77 @@
+name: Terragrunt Plan and Apply
+on:
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        description: "Environment"
+        required: true
+      pr-number:
+        type: string
+        description: The PR number if wanting to send the plan/apply output to a PR.
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  terragrunt-plan:
+    name: "Terragrunt Plan"
+    runs-on: ${{ github.event.inputs.runnerName }}
+    environment: ${{ inputs.environment }}
+    env:
+      ARM_USE_OIDC: true
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
+    steps:
+      - name: Git Config
+        run: |
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Terragrunt installer
+        uses: autero1/action-terragrunt@v1.3.1
+        with:
+          terragrunt_version: v0.67.6
+
+      - name: Prerequisites
+        uses: mtjtest001/testpublic001/.github/actions/terraform-prerequisites@main
+        with:
+          environment: ${{ inputs.environment }}
+          secrets: inherit
+
+      - name: TerragruntPlan
+        uses: mtjtest001/testpublic001/.github/actions/terragrunt-plan@main
+        with:
+          environment: ${{ inputs.environment }}
+          pr-number: ${{ inputs.pr-number }}
+
+  terragrunt_apply:
+    name: "Terragrunt Apply"
+    if: needs.terragrunt-plan.result == 'success'
+    needs: terragrunt-plan
+    runs-on: ${{ github.event.inputs.runnerName }}
+    env:
+      ARM_USE_OIDC: true
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Terragrunt installer
+        uses: autero1/action-terragrunt@v1.3.1
+        with:
+          terragrunt_version: v0.67.6
+
+      - name: TerragruntApply
+        uses: mtjtest001/testpublic001/.github/actions/terragrunt-apply@main
+        with:
+          environment: ${{ inputs.environment }}

@@ -19,8 +19,3 @@ runs:
       uses: aquasecurity/tfsec-action@v1.0.3
       with:
         working-directory: "./${{ inputs.environment }}"
-
-    - name: Run TFsec
-      uses: aquasecurity/tfsec-action@v1.0.3
-      with:
-        working-directory: "../../${{ inputs.environment }}"

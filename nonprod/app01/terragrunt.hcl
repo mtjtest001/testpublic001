@@ -9,7 +9,6 @@ terraform {
   source = "../../terraform-modules/resource-group"
 }
 
-
 inputs = {
   resource_group_name = "nonprod-01"
   location            = "EastUS2"

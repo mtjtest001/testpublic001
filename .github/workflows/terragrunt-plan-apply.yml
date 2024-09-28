@@ -6,9 +6,9 @@ on:
         type: string
         description: "Environment"
         required: true
-      pr-number:
-        type: string
-        description: The PR number if wanting to send the plan/apply output to a PR.
+    secrets:
+      PR_TOKEN_ENV:
+        required: true
 
 defaults:
   run:
@@ -17,7 +17,8 @@ defaults:
 jobs:
   terragrunt-plan:
     name: "Terragrunt Plan"
-    runs-on: ${{ github.event.inputs.runnerName }}
+    # runs-on: ${{ inputs.runnerName }}
+    runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     env:
       ARM_USE_OIDC: true
@@ -48,13 +49,14 @@ jobs:
         uses: mtjtest001/testpublic001/.github/actions/terragrunt-plan@main
         with:
           environment: ${{ inputs.environment }}
-          pr-number: ${{ inputs.pr-number }}
+          github-token: ${{ secrets.PR_TOKEN_ENV }}
 
   terragrunt_apply:
     name: "Terragrunt Apply"
     if: needs.terragrunt-plan.result == 'success'
     needs: terragrunt-plan
-    runs-on: ${{ github.event.inputs.runnerName }}
+    # runs-on: ${{ inputs.runnerName }}
+    runs-on: ubuntu-latest
     env:
       ARM_USE_OIDC: true
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}

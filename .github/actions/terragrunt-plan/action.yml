@@ -29,7 +29,6 @@ runs:
         exec > >(tee -a "${GITHUB_WORKSPACE}/plan_output.txt") 2>&1 terragrunt run-all show -no-color tfplan --terragrunt-ignore-dependency-errors --terragrunt-parallelism 1
 
     - name: Format output file
-      if: ${{ inputs.pr-number }}
       shell: bash
       run: |
         set -xeuo pipefail
@@ -53,8 +52,6 @@ runs:
     - name: Create PR Comment with Plan Results
       uses: actions/github-script@v4
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        issue: ${{ inputs.pr-number }}
         script: |
           const issue_number = context.issue.number;
           const planResultPath = process.env.plan_report_file_path;

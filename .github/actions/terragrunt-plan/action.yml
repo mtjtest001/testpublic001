@@ -53,7 +53,7 @@ runs:
     - name: Create PR Comment with Plan Results
       uses: actions/github-script@v4
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.pr_token }}
         issue: ${{ inputs.pr-number }}
         script: |
           const issue_number = context.issue.number;

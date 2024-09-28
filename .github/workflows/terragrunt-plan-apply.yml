@@ -62,7 +62,7 @@ jobs:
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-    environment: ${{ inputs.environment }}
+    environment: ${{ inputs.environment }}_deploy
 
     steps:
       - name: Checkout

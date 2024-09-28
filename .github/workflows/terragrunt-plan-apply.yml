@@ -77,3 +77,4 @@ jobs:
         uses: mtjtest001/testpublic001/.github/actions/terragrunt-apply@main
         with:
           environment: ${{ inputs.environment }}
+          secrets: inherit

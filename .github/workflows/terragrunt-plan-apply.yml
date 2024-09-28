@@ -46,7 +46,6 @@ jobs:
         uses: mtjtest001/testpublic001/.github/actions/terragrunt-plan@main
         with:
           environment: ${{ inputs.environment }}
-          github-token: ${{ secrets.pr_token }}
 
   terragrunt_apply:
     name: "Terragrunt Apply"
@@ -74,4 +73,3 @@ jobs:
         uses: mtjtest001/testpublic001/.github/actions/terragrunt-apply@main
         with:
           environment: ${{ inputs.environment }}
-          github-token: ${{ secrets.pr_token }}

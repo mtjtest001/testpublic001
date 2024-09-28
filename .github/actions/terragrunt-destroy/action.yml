@@ -1,0 +1,12 @@
+name: Terragrunt Destroy
+description: Terragrunt Destroy
+
+runs:
+  using: composite
+  steps:
+    - name: "Terragrunt Destroy"
+      shell: bash
+      if: ${{ github.event.inputs.do_destroy == 'true'}}
+      working-directory: "./${{ inputs.environment }}"
+      run: |
+        terragrunt run-all destroy --terragrunt-non-interactive

@@ -1,0 +1,10 @@
+name: Install Dependencies
+description: Terraform Dependencies
+
+runs:
+  using: composite
+  steps:
+    - name: Install Dependencies
+      shell: bash
+      run: |
+        sudo az aks install-cli

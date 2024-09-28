@@ -61,6 +61,14 @@ jobs:
         with:
           directories: ${{ steps.find-terragrunt-changes.outputs.all_changed_files }}
 
+      - name: "Test"
+        shell: bash
+        run: |
+          echo "Changed files"
+          echo "${{ steps.find-terragrunt-changes.outputs.all_changed_files }}"
+          echo "Matrix"
+          echo "${{ steps.generate-matrix.outputs.directory-matrix }}"
+
   terragrunt-plan-apply-nonprod:
     if: fromJson(needs.generate-folder-names.outputs.matrix).nonprod != ''
     needs:

@@ -11,11 +11,12 @@ runs:
         set -xeuo pipefail
         terragrunt init --terragrunt-non-interactive
         terragrunt run-all validate --terragrunt-ignore-dependency-errors
-        terragrunt run-all plan -no-color -input=false --terragrunt-out-dir /tmp/tfplan
+        # Run default plan with output
+        terragrunt run-all plan -no-color -input=false -out tfplan --terragrunt-ignore-dependency-errors
 
     - name: "Terragrunt Apply"
       shell: bash
       if: ${{ github.event.inputs.do_apply == 'true'}}
       working-directory: "./${{ inputs.environment }}"
       run: |
-        terragrunt run-all apply --terragrunt-non-interactive --terragrunt-out-dir /tmp/tfplan
+        terragrunt run-all apply -no-color tfplan --terragrunt-ignore-dependency-errors

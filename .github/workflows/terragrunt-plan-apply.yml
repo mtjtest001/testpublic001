@@ -9,10 +9,6 @@ on:
       pr-number:
         type: string
         description: The PR number if wanting to send the plan/apply output to a PR.
-      directories-matrix:
-        type: string
-        required: true
-        description: The directories matrix to run the terragrunt plan/apply against
 
 defaults:
   run:

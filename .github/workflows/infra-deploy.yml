@@ -69,7 +69,6 @@ jobs:
     with:
       environment: nonprod
       pr-number: ${{ github.event.pull_request.number }}
-      directories-matrix: ${{ toJson(fromJson(needs.generate-folder-names.outputs.matrix).nonprod) }}
     secrets: inherit
 
   terragrunt-plan-apply-preprod:
@@ -81,5 +80,4 @@ jobs:
     with:
       environment: preprod
       pr-number: ${{ github.event.pull_request.number }}
-      directories-matrix: ${{ toJson(fromJson(needs.generate-folder-names.outputs.matrix).preprod) }}
     secrets: inherit

@@ -29,7 +29,8 @@ permissions:
 jobs:
   generate-folder-names:
     name: pr create
-    runs-on: ${{ github.event.inputs.runnerName }}
+    # runs-on: ${{ github.event.inputs.runnerName }}
+    runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.generate-matrix.outputs.directory-matrix }}
     steps:

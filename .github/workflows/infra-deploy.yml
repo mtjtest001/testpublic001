@@ -69,7 +69,7 @@ jobs:
     uses: mtjtest001/testpublic001/.github/workflows/terragrunt-plan-apply.yml@main
     with:
       environment: nonprod
-      pr-number: ${{ github.event.pull_request.number }}
+      github-token: ${{ secrets.pr_token }}
     secrets: inherit
 
   terragrunt-plan-apply-preprod:
@@ -80,5 +80,5 @@ jobs:
     uses: mtjtest001/testpublic001/.github/workflows/terragrunt-plan-apply.yml@main
     with:
       environment: preprod
-      pr-number: ${{ github.event.pull_request.number }}
+      github-token: ${{ secrets.pr_token }}
     secrets: inherit

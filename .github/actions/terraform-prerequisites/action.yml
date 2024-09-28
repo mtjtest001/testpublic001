@@ -7,10 +7,6 @@ runs:
     - name: Set up TFLint
       uses: terraform-linters/setup-tflint@v1
 
-    - name: test
-      shell: bash
-      run: ls
-
     - name: Initialize TFLint
       shell: bash
       run: tflint --init
@@ -22,7 +18,7 @@ runs:
     - name: Run TFsec
       uses: aquasecurity/tfsec-action@v1.0.3
       with:
-        working-directory: "../../${{ inputs.environment }}"
+        working-directory: "./${{ inputs.environment }}"
 
     - name: Run TFsec
       uses: aquasecurity/tfsec-action@v1.0.3

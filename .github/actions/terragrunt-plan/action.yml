@@ -52,7 +52,7 @@ runs:
     - name: Create PR Comment with Plan Results
       uses: actions/github-script@v4
       with:
-        # github-token: ${{ secrets.PR_TOKEN_ENV }}
+        github-token: ${{ secrets.PR_TOKEN_ENV }}
         script: |
           const issue_number = context.issue.number;
           const planResultPath = process.env.plan_report_file_path;

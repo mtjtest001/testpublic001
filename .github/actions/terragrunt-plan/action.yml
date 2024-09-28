@@ -13,7 +13,6 @@ runs:
         set -xeuo pipefail
         terragrunt init
         terragrunt run-all validate --terragrunt-ignore-dependency-errors
-        terragrunt run-all plan -no-color -input=false -out tfplan --terragrunt-ignore-dependency-errors
 
     - name: "Terragrunt Plan"
       shell: bash

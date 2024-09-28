@@ -36,16 +36,17 @@ jobs:
         with:
           terragrunt_version: v0.67.6
 
-      - name: Prerequisites
-        uses: mtjtest001/testpublic001/.github/actions/terraform-prerequisites@main
-        with:
-          environment: ${{ inputs.environment }}
-          secrets: inherit
+      # - name: Prerequisites
+      #   uses: mtjtest001/testpublic001/.github/actions/terraform-prerequisites@main
+      #   with:
+      #     environment: ${{ inputs.environment }}
+      #     secrets: inherit
 
       - name: TerragruntPlan
         uses: mtjtest001/testpublic001/.github/actions/terragrunt-plan@main
         with:
           environment: ${{ inputs.environment }}
+          secrets: inherit
 
   terragrunt_apply:
     name: "Terragrunt Apply"

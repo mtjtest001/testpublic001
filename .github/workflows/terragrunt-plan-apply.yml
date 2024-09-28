@@ -6,6 +6,9 @@ on:
         type: string
         description: "Environment"
         required: true
+    secrets:
+      PR_TOKEN_ENV:
+        required: true
 
 defaults:
   run:
@@ -46,7 +49,7 @@ jobs:
         uses: mtjtest001/testpublic001/.github/actions/terragrunt-plan@main
         with:
           environment: ${{ inputs.environment }}
-          secrets: inherit
+          github-token: ${{ secrets.PR_TOKEN_ENV }}
 
   terragrunt_apply:
     name: "Terragrunt Apply"

@@ -7,7 +7,7 @@ on:
         description: "Environment"
         required: true
     secrets:
-      PR_TOKEN_ENV:
+      PR_ENV:
         required: true
 
 defaults:

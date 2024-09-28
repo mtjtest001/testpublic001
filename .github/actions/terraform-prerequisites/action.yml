@@ -17,7 +17,7 @@ runs:
 
     - name: Run TFLint
       shell: bash
-      run: tflint --chdir="../${{ inputs.environment }}"
+      run: tflint --chdir="./${{ inputs.environment }}"
 
     - name: Run TFsec
       uses: aquasecurity/tfsec-action@v1.0.3

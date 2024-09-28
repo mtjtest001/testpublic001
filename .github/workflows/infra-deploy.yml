@@ -29,8 +29,8 @@ permissions:
 jobs:
   generate-folder-names:
     name: pr create
-    runs-on: ${{ github.event.inputs.runnerName }}
-    # runs-on: ubuntu-latest
+    # runs-on: ${{ github.event.inputs.runnerName }}
+    runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.generate-matrix.outputs.directory-matrix }}
     steps:
@@ -61,24 +61,24 @@ jobs:
         with:
           directories: ${{ steps.find-terragrunt-changes.outputs.all_changed_files }}
 
-  # terragrunt-plan-apply-nonprod:
-  #   if: fromJson(needs.generate-folder-names.outputs.matrix).nonprod != ''
-  #   needs:
-  #     - generate-folder-names
-  #   name: Terragrunt Plan and Apply
-  #   uses: mtjtest001/testpublic001/.github/workflows/terragrunt-plan-apply.yml@main
-  #   with:
-  #     environment: nonprod
-  #     pr-number: ${{ github.event.pull_request.number }}
-  #   secrets: inherit
+  terragrunt-plan-apply-nonprod:
+    if: fromJson(needs.generate-folder-names.outputs.matrix).nonprod != ''
+    needs:
+      - generate-folder-names
+    name: Terragrunt Plan and Apply
+    uses: mtjtest001/testpublic001/.github/workflows/terragrunt-plan-apply.yml@main
+    with:
+      environment: nonprod
+      pr-number: ${{ github.event.pull_request.number }}
+    secrets: inherit
 
-  # terragrunt-plan-apply-preprod:
-  #   if: fromJson(needs.generate-folder-names.outputs.matrix).preprod != ''
-  #   needs:
-  #     - generate-folder-names
-  #   name: Terragrunt Plan and Apply
-  #   uses: mtjtest001/testpublic001/.github/workflows/terragrunt-plan-apply.yml@main
-  #   with:
-  #     environment: preprod
-  #     pr-number: ${{ github.event.pull_request.number }}
-  #   secrets: inherit
+  terragrunt-plan-apply-preprod:
+    if: fromJson(needs.generate-folder-names.outputs.matrix).preprod != ''
+    needs:
+      - generate-folder-names
+    name: Terragrunt Plan and Apply
+    uses: mtjtest001/testpublic001/.github/workflows/terragrunt-plan-apply.yml@main
+    with:
+      environment: preprod
+      pr-number: ${{ github.event.pull_request.number }}
+    secrets: inherit

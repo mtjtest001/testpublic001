@@ -3,8 +3,6 @@ resource "azurerm_resource_group" "vnet_resource_group" {
   location = var.location
 }
 
-
-# This is required for most resource modules
 variable "resource_group_name" {
   type        = string
   description = "The resource group where the resources will be deployed."

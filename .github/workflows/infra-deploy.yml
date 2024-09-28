@@ -18,9 +18,9 @@ on:
         type: choice
         description: "Runner Name"
         required: true
-        default: "ubuntu-latest"
+        default: ubuntu-latest
         options:
-          - "ubuntu-latest"
+          - ubuntu-latest
 
 permissions:
   id-token: write # This is required for requesting the JWT
@@ -29,7 +29,8 @@ permissions:
 jobs:
   generate-folder-names:
     name: pr create
-    runs-on: ${{ github.event.inputs.runnerName }}
+    # runs-on: ${{ github.event.inputs.runnerName }}
+    runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.generate-matrix.outputs.directory-matrix }}
     steps:
@@ -69,8 +70,6 @@ jobs:
     with:
       environment: nonprod
       pr-number: ${{ github.event.pull_request.number }}
-      directories-matrix: ${{ toJson(fromJson(needs.generate-folder-names.outputs.matrix).nonprod) }}
-      check-approvals: true
     secrets: inherit
 
   terragrunt-plan-apply-preprod:
@@ -82,6 +81,4 @@ jobs:
     with:
       environment: preprod
       pr-number: ${{ github.event.pull_request.number }}
-      directories-matrix: ${{ toJson(fromJson(needs.generate-folder-names.outputs.matrix).preprod) }}
-      check-approvals: true
     secrets: inherit

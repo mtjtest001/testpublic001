@@ -5,13 +5,10 @@ include "root" {
 
 
 terraform {
-  source = "../../terraform-modules/aks"
-}
-
-locals {
+  source = "../../terraform-modules/resource-group"
 }
 
 inputs = {
-  resource_group_name = "nonprod-02"
+  resource_group_name = "nonprod-01"
   location            = "EastUS2"
 }

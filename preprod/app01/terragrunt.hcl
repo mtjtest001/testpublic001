@@ -11,3 +11,5 @@ inputs = {
   resource_group_name = "preprd-01"
   location            = "EastUS2"
 }
+
+

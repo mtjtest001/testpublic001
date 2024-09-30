@@ -14,4 +14,3 @@ inputs = {
   location            = "EastUS2"
 }
 
-

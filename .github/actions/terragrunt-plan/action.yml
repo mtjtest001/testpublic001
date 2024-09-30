@@ -38,7 +38,7 @@ runs:
 
         echo 'Ran Plan for dir: `${{ matrix.directory }}`' >> "${GITHUB_WORKSPACE}/plan_output.txt"
         echo >> "${GITHUB_WORKSPACE}/plan_output.txt"
-        echo '<details><summary>Show Output - ${{ inputs.environment }} </summary>' >> "${GITHUB_WORKSPACE}/plan_output.txt"
+        echo '<details><summary>Show Output </summary>' >> "${GITHUB_WORKSPACE}/plan_output.txt"
         echo >> "${GITHUB_WORKSPACE}/plan_output.txt"
         echo '```diff' >> "${GITHUB_WORKSPACE}/plan_output.txt"
         echo >> "${GITHUB_WORKSPACE}/plan_output.txt"

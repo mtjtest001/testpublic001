@@ -9,6 +9,10 @@ on:
     secrets:
       PR_TOKEN_ENV:
         required: true
+      app_id_01:
+        required: true
+      app_key_01:
+        required: true
 
 defaults:
   run:
@@ -17,7 +21,6 @@ defaults:
 jobs:
   terragrunt-plan:
     name: "Terragrunt Plan"
-    # runs-on: ${{ inputs.runnerName }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     env:
@@ -50,12 +53,13 @@ jobs:
         with:
           environment: ${{ inputs.environment }}
           github-token: ${{ secrets.PR_TOKEN_ENV }}
+          app-id: ${{ secrets.app_id_01 }}
+          private-key: ${{ secrets.app_key_01 }}
 
   terragrunt_apply:
     name: "Terragrunt Apply"
     if: needs.terragrunt-plan.result == 'success'
     needs: terragrunt-plan
-    # runs-on: ${{ inputs.runnerName }}
     runs-on: ubuntu-latest
     env:
       ARM_USE_OIDC: true

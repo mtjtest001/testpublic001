@@ -12,16 +12,6 @@ on:
       - nonprod/**/terragrunt.hcl
       - preprod/**/terragrunt.hcl
 
-  workflow_dispatch:
-    inputs:
-      runnerName:
-        type: choice
-        description: "Runner Name"
-        required: true
-        default: ubuntu-latest
-        options:
-          - ubuntu-latest
-
 permissions:
   id-token: write # This is required for requesting the JWT
   contents: read # This is required for actions/checkout

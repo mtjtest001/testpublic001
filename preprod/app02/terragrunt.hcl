@@ -13,6 +13,3 @@ inputs = {
   location            = "EastUS2"
 }
 
-
-
-

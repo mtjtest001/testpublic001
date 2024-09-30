@@ -73,7 +73,7 @@ jobs:
     if: fromJson(needs.generate-folder-names.outputs.matrix).nonprod != ''
     needs:
       - generate-folder-names
-    name: Terragrunt Plan and Apply
+    name: NonProd Terragrunt Plan and Apply
     uses: mtjtest001/testpublic001/.github/workflows/terragrunt-plan-apply.yml@main
     with:
       environment: nonprod
@@ -83,7 +83,7 @@ jobs:
     if: fromJson(needs.generate-folder-names.outputs.matrix).preprod != ''
     needs:
       - generate-folder-names
-    name: Terragrunt Plan and Apply
+    name: PreProd Terragrunt Plan and Apply
     uses: mtjtest001/testpublic001/.github/workflows/terragrunt-plan-apply.yml@main
     with:
       environment: preprod

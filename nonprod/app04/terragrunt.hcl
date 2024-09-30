@@ -10,6 +10,6 @@ terraform {
 }
 
 inputs = {
-  resource_group_name = "nonprod-05"
+  resource_group_name = "nonprod-04"
   location            = "EastUS2"
 }

@@ -9,6 +9,6 @@ terraform {
 
 
 inputs = {
-  resource_group_name = "preprd-rg-01"
+  resource_group_name = "preprd-01"
   location            = "EastUS2"
 }

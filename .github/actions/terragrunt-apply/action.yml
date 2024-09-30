@@ -5,7 +5,6 @@ runs:
   using: composite
   steps:
     - name: "Terragrunt Init, Validate and Plan"
-      id: terragruntapply
       shell: bash
       working-directory: "./${{ inputs.environment }}"
       run: |

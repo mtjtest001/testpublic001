@@ -16,7 +16,6 @@ runs:
 
     - name: "Terragrunt Apply"
       shell: bash
-      if: ${{ github.event.inputs.do_apply == 'true'}}
       working-directory: "./${{ inputs.environment }}"
       run: |
         terragrunt run-all apply -no-color tfplan --terragrunt-ignore-dependency-errors

@@ -13,7 +13,7 @@ runs:
         terragrunt init --terragrunt-non-interactive
         terragrunt run-all validate --terragrunt-ignore-dependency-errors
         # Run default plan with output
-        terragrun run-all plan -no-color -input=false -out tfplan --terragrunt-ignore-dependency-errors
+        terragrunt run-all plan -no-color -input=false -out tfplan --terragrunt-ignore-dependency-errors
 
     - name: "Terragrunt Apply"
       shell: bash

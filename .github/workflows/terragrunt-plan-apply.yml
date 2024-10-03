@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Terragrunt installer
-        uses: autero1/action-terragrunt@v1.3.1
+        uses: autero1/action-terragrunt@v3.0.2
         with:
           terragrunt_version: v0.67.6
 
@@ -70,7 +70,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Terragrunt installer
-        uses: autero1/action-terragrunt@v1.3.1
+        uses: autero1/action-terragrunt@v3.0.2
         with:
           terragrunt_version: v0.67.6
 

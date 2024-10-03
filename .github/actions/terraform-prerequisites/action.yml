@@ -31,5 +31,6 @@ runs:
       uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
       with:
         tfsec_args: --soft-fail
-        working_directory: "./${{ inputs.environment }}"
+        # working_directory: "./${{ inputs.environment }}"
+        working_directory: "./terraform-modules"
         github_token: ${{ steps.generate-token.outputs.token }}

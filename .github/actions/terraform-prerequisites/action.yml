@@ -19,3 +19,17 @@ runs:
       uses: aquasecurity/tfsec-action@v1.0.3
       with:
         working-directory: "./${{ inputs.environment }}"
+
+    - name: Generate a token
+      id: generate-token
+      uses: actions/create-github-app-token@v1
+      with:
+        app-id: ${{ inputs.app-id }}
+        private-key: ${{ inputs.private-key }}
+
+    - name: tfsec
+      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+      with:
+        tfsec_args: --soft-fail
+        working_directory: "./${{ inputs.environment }}"
+        github_token: ${{ steps.generate-token.outputs.token }}

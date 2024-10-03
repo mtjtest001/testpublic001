@@ -38,7 +38,7 @@ jobs:
       - name: Terragrunt installer
         uses: autero1/action-terragrunt@v3.0.2
         with:
-          terragrunt_version: v0.67.6
+          terragrunt-version: v0.67.6
 
       - name: Prerequisites
         uses: mtjtest001/testpublic001/.github/actions/terraform-prerequisites@main
@@ -72,7 +72,7 @@ jobs:
       - name: Terragrunt installer
         uses: autero1/action-terragrunt@v3.0.2
         with:
-          terragrunt_version: v0.67.6
+          terragrunt-version: v0.67.6
 
       - name: TerragruntApply
         uses: mtjtest001/testpublic001/.github/actions/terragrunt-apply@main

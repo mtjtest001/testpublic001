@@ -49,13 +49,13 @@ jobs:
       #     WIZ_CLIENT_ID: ${{ secrets.WIZ_CLIENT_ID }}
       #     WIZ_CLIENT_SECRET: ${{ secrets.WIZ_CLIENT_SECRET }}
 
-      # - name: Prerequisites
-      #   uses: mtjtest001/testpublic001/.github/actions/terraform-prerequisites@main
-      #   with:
-      #     environment: ${{ inputs.environment }}
-      #     secrets: inherit
-      #     app-id: ${{ secrets.app_id_01 }}
-      #     private-key: ${{ secrets.app_key_01 }}
+      - name: Prerequisites
+        uses: mtjtest001/testpublic001/.github/actions/terraform-prerequisites@main
+        with:
+          environment: ${{ inputs.environment }}
+          secrets: inherit
+          app-id: ${{ secrets.app_id_01 }}
+          private-key: ${{ secrets.app_key_01 }}
 
       # - name: Login to Azure CLI
       #   env:
@@ -78,7 +78,7 @@ jobs:
           app-id: ${{ secrets.app_id_01 }}
           private-key: ${{ secrets.app_key_01 }}
         env:
-          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
@@ -90,7 +90,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # ARM_USE_OIDC: true
-      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
@@ -109,3 +109,8 @@ jobs:
         uses: mtjtest001/testpublic001/.github/actions/terragrunt-apply@main
         with:
           environment: ${{ inputs.environment }}
+        env:
+          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}

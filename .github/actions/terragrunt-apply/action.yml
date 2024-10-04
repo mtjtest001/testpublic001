@@ -4,6 +4,11 @@ description: Terragrunt Apply
 runs:
   using: composite
   steps:
+
+    - uses: azure/login@v2
+      with:
+        creds: '{"clientId":"${{ env.ARM_CLIENT_ID }}","clientSecret":"${{ env.ARM_CLIENT_SECRET }}","subscriptionId":"${{ env.ARM_SUBSCRIPTION_ID }}","tenantId":"${{ env.ARM_TENANT_ID }}"}'
+    
     - name: "Terragrunt Init, Validate and Plan"
       shell: bash
       working-directory: "./${{ inputs.environment }}"

@@ -9,6 +9,12 @@ runs:
     - name: Check out repository
       uses: actions/checkout@v4
 
+    - name: download-wiz
+      shell: bash
+      run: |
+        git clone git@github.com:themill/wiz.git
+        pip install .
+
     - name: Authenticate to Wiz
       shell: bash
       run: $HOME/wizcli auth --id "$WIZ_CLIENT_ID" --secret "$WIZ_CLIENT_SECRET"

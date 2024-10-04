@@ -21,8 +21,7 @@ runs:
       id: wiz-scan
       env:
         POLICY: "Lumen IaC policy" # Set the desired Wiz CLI policy to use
-      with:
-        working-directory: "./${{ inputs.environment }}"
+      working-directory: "./${{ inputs.environment }}"
       run: |
         $HOME/wizcli iac scan --path . --policy "$POLICY"
 

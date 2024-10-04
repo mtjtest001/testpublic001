@@ -13,8 +13,7 @@ runs:
 
     - name: Run TFLint
       shell: bash
-      # run: tflint --chdir="./${{ inputs.environment }}" --recursive
-      run: tflint --chdir="./terraform-modules" --recursive
+      run: tflint --chdir="./${{ inputs.environment }}" --recursive
 
     - name: Run TFsec
       uses: aquasecurity/tfsec-action@v1.0.3

@@ -1,0 +1,28 @@
+name: wiz-cli IaC Scan
+description: wiz-cli IaC Scan on PR created
+
+runs:
+  using: composite
+
+  steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Check out repository
+      uses: actions/checkout@v4
+
+    - name: Authenticate to Wiz
+      shell: bash
+      run: $HOME/wizcli auth --id "$WIZ_CLIENT_ID" --secret "$WIZ_CLIENT_SECRET"
+      env:
+        WIZ_CLIENT_ID: ${{ inputs.WIZ_CLIENT_ID }}
+        WIZ_CLIENT_SECRET: ${{ inputs.WIZ_CLIENT_SECRET }}
+
+    - name: Run wiz CLI IaC scan in changed directories
+      shell: bash
+      id: wiz-scan
+      env:
+        POLICY: "Lumen IaC policy" # Set the desired Wiz CLI policy to use
+      with:
+        working-directory: "./${{ inputs.environment }}"
+      run: |
+        $HOME/wizcli iac scan --path . --policy "$POLICY"
+

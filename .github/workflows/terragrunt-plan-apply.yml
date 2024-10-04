@@ -40,6 +40,14 @@ jobs:
         with:
           terragrunt-version: v0.67.6
 
+      - name: Wiz Scan
+        uses: mtjtest001/testpublic001/.github/actions/wiz@main
+        with:
+          environment: ${{ inputs.environment }}
+          secrets: inherit
+          WIZ_CLIENT_ID: ${{ secrets.WIZ_CLIENT_ID }}
+          WIZ_CLIENT_SECRET: ${{ secrets.WIZ_CLIENT_SECRET }}
+
       - name: Prerequisites
         uses: mtjtest001/testpublic001/.github/actions/terraform-prerequisites@main
         with:

@@ -18,7 +18,8 @@ runs:
     - name: Run TFsec
       uses: aquasecurity/tfsec-action@v1.0.3
       with:
-        working-directory: "./${{ inputs.environment }}"
+        # working-directory: "./${{ inputs.environment }}"
+        working-directory: "./terraform-modules"
 
     # - name: Generate a token
     #   id: generate-token

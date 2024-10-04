@@ -12,9 +12,9 @@ on:
       - nonprod/**/terragrunt.hcl
       - preprod/**/terragrunt.hcl
 
-permissions:
-  id-token: write # This is required for requesting the JWT
-  contents: read # This is required for actions/checkout
+# permissions:
+#   id-token: write # This is required for requesting the JWT
+#   contents: read # This is required for actions/checkout
 
 jobs:
   generate-folder-names:

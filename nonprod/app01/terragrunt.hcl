@@ -4,7 +4,6 @@ include "root" {
 }
 
 locals {}
-
 terraform {
   source = "../../terraform-modules/resource-group"
 }

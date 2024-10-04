@@ -4,17 +4,6 @@ description: Terragrunt Plan
 runs:
   using: composite
   steps:
-    - name: Login to Azure CLI
-      shell: bash
-      env:
-        ARM_CLIENT_ID: ${{ inputs.ARM_CLIENT_ID }}
-        ARM_TENANT_ID: ${{ inputs.ARM_TENANT_ID }}
-        ARM_CLIENT_SECRET: ${{ inputs.ARM_CLIENT_SECRET }}
-        ARM_SUBSCRIPTION_ID: ${{ inputs.ARM_SUBSCRIPTION_ID }}
-      run: |
-        az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
-        az account set --subscription $ARM_SUBSCRIPTION_ID
-
     - name: "Terragrunt Init, Validate"
       shell: bash
       working-directory: "./${{ inputs.environment }}"

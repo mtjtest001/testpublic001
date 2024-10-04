@@ -12,7 +12,7 @@ runs:
     - name: download-wiz
       shell: bash
       run: |
-        git clone git@github.com:themill/wiz.git
+        pip install wiz-env
         pip install .
 
     - name: Authenticate to Wiz

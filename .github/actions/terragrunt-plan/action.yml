@@ -11,8 +11,6 @@ runs:
         TERRAGRUNT_NON_INTERACTIVE: true
       run: |
         set -xeuo pipefail
-        az login --service-principal -u "3146b07e-ced7-4128-90fc-45eaab5bc1fd" -t "553bbad8-53d4-412c-b86c-7110503b960d" -p $AZURE_CLIENT_SECRET
-        az account set --subscription $ARM_SUBSCRIPTION_ID
         terragrunt init
         terragrunt run-all validate --terragrunt-ignore-dependency-errors
 

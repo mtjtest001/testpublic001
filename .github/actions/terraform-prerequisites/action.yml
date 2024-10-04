@@ -13,13 +13,13 @@ runs:
 
     - name: Run TFLint
       shell: bash
-      run: tflint --chdir="./${{ inputs.environment }}" --recursive
+      # run: tflint --chdir="./${{ inputs.environment }}" --recursive
+      run: tflint --chdir="./terraform-modules" --recursive
 
     - name: Run TFsec
       uses: aquasecurity/tfsec-action@v1.0.3
       with:
-        # working-directory: "./${{ inputs.environment }}"
-        working-directory: "./terraform-modules"
+        working-directory: "./${{ inputs.environment }}"
 
     # - name: Generate a token
     #   id: generate-token

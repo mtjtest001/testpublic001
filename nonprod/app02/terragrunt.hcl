@@ -11,5 +11,3 @@ inputs = {
   resource_group_name = "nonprod-02"
   location            = "EastUS2"
 }
-
-

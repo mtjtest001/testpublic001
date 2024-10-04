@@ -53,9 +53,6 @@ jobs:
         uses: mtjtest001/testpublic001/.github/actions/terraform-prerequisites@main
         with:
           environment: ${{ inputs.environment }}
-          secrets: inherit
-          app-id: ${{ secrets.app_id_01 }}
-          private-key: ${{ secrets.app_key_01 }}
 
       # - name: Login to Azure CLI
       #   env:

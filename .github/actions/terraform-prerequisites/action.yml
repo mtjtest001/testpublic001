@@ -4,8 +4,8 @@ description: Terraform Prerequisites
 runs:
   using: composite
   steps:
-    - name: Set up TFLint
-      uses: terraform-linters/setup-tflint@v1
+    - uses: terraform-linters/setup-tflint@v4
+      name: Setup TFLint
 
     - name: Initialize TFLint
       shell: bash
@@ -20,17 +20,17 @@ runs:
       with:
         working-directory: "./${{ inputs.environment }}"
 
-    - name: Generate a token
-      id: generate-token
-      uses: actions/create-github-app-token@v1
-      with:
-        app-id: ${{ inputs.app-id }}
-        private-key: ${{ inputs.private-key }}
+    # - name: Generate a token
+    #   id: generate-token
+    #   uses: actions/create-github-app-token@v1
+    #   with:
+    #     app-id: ${{ inputs.app-id }}
+    #     private-key: ${{ inputs.private-key }}
 
-    - name: tfsec
-      uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
-      with:
-        tfsec_args: --soft-fail
-        # working_directory: "./${{ inputs.environment }}"
-        working_directory: "./terraform-modules"
-        github_token: ${{ steps.generate-token.outputs.token }}
+    # - name: tfsec
+    #   uses: aquasecurity/tfsec-pr-commenter-action@v1.3.1
+    #   with:
+    #     tfsec_args: --soft-fail
+    #     # working_directory: "./${{ inputs.environment }}"
+    #     working_directory: "./terraform-modules"
+    #     github_token: ${{ steps.generate-token.outputs.token }}

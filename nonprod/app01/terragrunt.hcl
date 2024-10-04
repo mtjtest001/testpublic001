@@ -3,6 +3,11 @@ include "root" {
   path = find_in_parent_folders()
 }
 locals {}
+
+
+
+
+
 terraform {
   source = "../../terraform-modules/resource-group"
 }

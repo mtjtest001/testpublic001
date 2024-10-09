@@ -7,8 +7,8 @@ locals {}
 
 
 terraform {
-  #source = "git::https://mtjtest001.com/testmtjrepo001.git//terraform-modules/resource-group?ref=1.1.1"
-  source = "https://github.com/mtjtest001/testmtjrepo001.git//terraform-modules/resource-group?ref=test"
+  source = "git@github.com:mtjtest001/testmtjrepo001.git//terraform-modules/resource-group?ref=test"
+  #source = "https://github.com/mtjtest001/testmtjrepo001.git//terraform-modules/resource-group?ref=test"
   
 }
 

@@ -20,7 +20,6 @@ runs:
       working-directory: "./${{ inputs.environment }}"
       env:
         TERRAGRUNT_NON_INTERACTIVE: true
-        # GH_TOKEN: ${{ steps.generate-token.outputs.token }}
       run: |
         set -xeuo pipefail
         terragrunt init
@@ -31,7 +30,6 @@ runs:
       working-directory: "./${{ inputs.environment }}"
       env:
         TERRAGRUNT_NON_INTERACTIVE: true
-        # GH_TOKEN: ${{ steps.generate-token.outputs.token }}
       run: |
         set -xeuo pipefail
 

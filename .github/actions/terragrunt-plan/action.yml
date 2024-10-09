@@ -33,6 +33,8 @@ runs:
       run: |
         set -xeuo pipefail
 
+        git config --global url."https://${{ steps.generate-token.outputs.token }}@github.com/".insteadOf "https://github.com/"
+
         terragrunt run-all plan -no-color -input=false -out tfplan --terragrunt-ignore-dependency-errors
         
         echo "####### Plan Output #######"

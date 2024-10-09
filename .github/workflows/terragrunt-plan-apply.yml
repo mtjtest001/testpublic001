@@ -35,7 +35,11 @@ jobs:
         with:
           app-id: ${{ secrets.app_id_01 }}
           private-key: ${{ secrets.app_key_01 }}
-      
+          owner: ${{ github.repository_owner }}
+          repositories: |
+            testpublic001
+            testmtjrepo001
+
       - name: Git Config
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
@@ -43,13 +47,8 @@ jobs:
           git config --global --add safe.directory $GITHUB_WORKSPACE
           git config --global url."https://$GH_TOKEN@github.com/".insteadOf "https://github.com/"
 
-      # - name: Checkout
-      #   uses: actions/checkout@v4
-      - uses: actions/checkout@v4
-        with:
-          token: ${{ steps.generate-token.outputs.token }}
-          ref: ${{ github.head_ref }}
-          persist-credentials: false
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Terragrunt installer
         uses: autero1/action-terragrunt@v3.0.2

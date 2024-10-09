@@ -5,10 +5,8 @@ include "root" {
 
 locals {}
 
-
 terraform {
-  source = "git::https://github.com/mtjtest001/testmtjrepo001.git//terraform-modules/resource-group?ref=test"
-  #source = "https://github.com/mtjtest001/testmtjrepo001.git//terraform-modules/resource-group?ref=test" 
+  source = "git::git@github.com:mtjtest001/testmtjrepo001.git//terraform-modules/resource-group?ref=main"
 }
 
 inputs = {

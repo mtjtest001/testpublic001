@@ -5,7 +5,7 @@ include "root" {
 
 
 terraform {
-  source = "../../terraform-modules/resource-group"
+  source = "git::https://github.com/mtjtest001/testmtjrepo001.git//terraform-modules/resource-group?ref=1.1.1"
 }
 
 inputs = {

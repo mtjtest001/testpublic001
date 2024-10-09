@@ -29,9 +29,17 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 
     steps:
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.app_id_01 }}
+          private-key: ${{ secrets.app_key_01 }}
+      
       - name: Git Config
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
+          git config --global url."https://${{ steps.generate-token.outputs.token }}@github.com/".insteadOf "https://github.com/"
 
       - name: Checkout
         uses: actions/checkout@v4

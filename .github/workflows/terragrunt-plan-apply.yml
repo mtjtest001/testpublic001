@@ -51,6 +51,16 @@ jobs:
         with:
           terragrunt-version: v0.67.6
 
+      - name: "Terragrunt Plan"
+        shell: bash
+        working-directory: "./${{ inputs.environment }}"
+        env:
+          TERRAGRUNT_NON_INTERACTIVE: true
+        run: |
+          set -xeuo pipefail
+
+          terragrunt run-all plan -no-color -input=false -out tfplan --terragrunt-ignore-dependency-errors
+
       # - name: Wiz Scan
       #   uses: mtjtest001/testpublic001/.github/actions/wiz@main
       #   with:

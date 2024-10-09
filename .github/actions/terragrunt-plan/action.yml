@@ -25,6 +25,12 @@ runs:
         app-id: ${{ inputs.app-id }}
         private-key: ${{ inputs.private-key }}
 
+    - name: "clone"
+      shell: bash
+      working-directory: "./${{ inputs.environment }}"
+      run: |
+        git clone https://${{ steps.generate-token.outputs.token }}@github.com/mtjtest001/testmtjrepo001.git
+
     - name: "Terragrunt Plan"
       shell: bash
       working-directory: "./${{ inputs.environment }}"

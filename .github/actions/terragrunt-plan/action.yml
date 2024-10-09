@@ -8,16 +8,6 @@ runs:
       with:
         creds: '{"clientId":"${{ env.ARM_CLIENT_ID }}","clientSecret":"${{ env.ARM_CLIENT_SECRET }}","subscriptionId":"${{ env.ARM_SUBSCRIPTION_ID }}","tenantId":"${{ env.ARM_TENANT_ID }}"}'
       
-    - name: "Terragrunt Init, Validate"
-      shell: bash
-      working-directory: "./${{ inputs.environment }}"
-      env:
-        TERRAGRUNT_NON_INTERACTIVE: true
-      run: |
-        set -xeuo pipefail
-        terragrunt init
-        terragrunt run-all validate --terragrunt-ignore-dependency-errors
-
     - name: Generate a token
       id: generate-token
       uses: actions/create-github-app-token@v1
@@ -25,11 +15,16 @@ runs:
         app-id: ${{ inputs.app-id }}
         private-key: ${{ inputs.private-key }}
 
-    - name: "clone"
+    - name: "Terragrunt Init, Validate"
       shell: bash
       working-directory: "./${{ inputs.environment }}"
+      env:
+        TERRAGRUNT_NON_INTERACTIVE: true
       run: |
-        git clone https://${{ steps.generate-token.outputs.token }}@github.com/mtjtest001/testmtjrepo001.git
+        set -xeuo pipefail
+        git config --global url."https://${{ steps.generate-token.outputs.token }}@github.com/".insteadOf "https://github.com/"
+        terragrunt init
+        terragrunt run-all validate --terragrunt-ignore-dependency-errors
 
     - name: "Terragrunt Plan"
       shell: bash
@@ -38,8 +33,6 @@ runs:
         TERRAGRUNT_NON_INTERACTIVE: true
       run: |
         set -xeuo pipefail
-
-        git config --global url."https://${{ steps.generate-token.outputs.token }}@github.com/".insteadOf "https://github.com/"
 
         terragrunt run-all plan -no-color -input=false -out tfplan --terragrunt-ignore-dependency-errors
         
